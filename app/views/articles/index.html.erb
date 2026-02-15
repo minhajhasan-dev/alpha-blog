@@ -19,7 +19,9 @@
           </h2>
 
           <p class="mt-2 text-sm text-slate-500 flex-1"><%= truncate(article.description, length: 140) %></p>
-
+          <div>
+            by <strong><%= article.user.username || "—" %></strong>
+          </div>
           <div class="mt-4 flex items-center justify-between">
             <div class="flex gap-2">
               <%= link_to "View", article_path(article), class: "inline-flex items-center rounded-md border border-slate-200 bg-white px-3 py-1 text-sm text-slate-700 hover:bg-slate-50" %>
