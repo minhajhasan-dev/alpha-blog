@@ -1,5 +1,10 @@
-<h1>Edit Article</h1>
+<div class="max-w-2xl mx-auto">
+  <h1 class="text-2xl font-semibold mb-4 text-slate-900">Edit Article</h1>
+  <div class="rounded-lg border bg-white p-6 shadow-sm">
+    <%= render 'form' %>
+  </div>
 
-<%= render 'form' %>
-
-<%= link_to 'Cancel and return to article listing', article_path%>
+  <div class="mt-4">
+    <%= link_to 'Cancel and return to article listing', articles_path, class: "text-sm text-slate-500 hover:underline" %>
+  </div>
+</div>

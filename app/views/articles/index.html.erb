@@ -1,23 +1,36 @@
-<h1 class="text-center mt-4" >Listing All Articles</h1>
-  <% @articles.each do |article| %>
-<div class="card bg-base-100 w-96 shadow-sm">
-  <div class="card-body">
-    <h2 class="card-title"><%=article.title%></h2>
-    <p><%=article.description%></p>
-    <div class="card-actions justify-end">
-      <%= link_to "Show", article_path(article) %>
-      <%= link_to "Edit", edit_article_path(article)%>
-      <%= link_to "Delete", article_path(article), method: :delete, data: { confirm: "Are you sure?" }, class:"btn-sm btn-error" %>
-      </div>
-  </div>
-  <figure>
-    <img
-      src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp"
-      alt="Shoes" />
-  </figure>
+<div class="flex items-center justify-between my-6">
+  <h1 class="text-3xl font-semibold ">Articles</h1>
+  <%= link_to "New Article", new_article_path, class: "inline-flex items-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-400" %>
 </div>
- <%end%>
 
+<% if @articles.empty? %>
+  <div class="rounded-md bg-yellow-50 p-4 text-yellow-800">No articles yet — <%= link_to "create the first one", new_article_path, class: "underline font-medium" %>.</div>
+<% else %>
+  <div class="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
+    <% @articles.each do |article| %>
+      <article class="group flex flex-col overflow-hidden rounded-lg border bg-white text-slate-900 shadow-sm">
+        <div class="h-40 bg-slate-100 overflow-hidden">
+          <img src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp" alt="article image" class="w-full h-full object-cover" />
+        </div>
 
+        <div class="p-4 flex-1 flex flex-col">
+          <h2 class="text-base font-medium text-slate-900">
+            <%= link_to article.title, article_path(article), class: "hover:underline" %>
+          </h2>
 
-<p><%= link_to "Create New Article", new_article_path %></p>
+          <p class="mt-2 text-sm text-slate-500 flex-1"><%= truncate(article.description, length: 140) %></p>
+
+          <div class="mt-4 flex items-center justify-between">
+            <div class="flex gap-2">
+              <%= link_to "View", article_path(article), class: "inline-flex items-center rounded-md border border-slate-200 bg-white px-3 py-1 text-sm text-slate-700 hover:bg-slate-50" %>
+              <%= link_to "Edit", edit_article_path(article), class: "inline-flex items-center rounded-md border border-amber-100 bg-amber-50 px-3 py-1 text-sm text-amber-700 hover:bg-amber-100" %>
+              <%= link_to "Delete", article_path(article), method: :delete, data: { confirm: "Are you sure?" }, class: "inline-flex items-center rounded-md border border-red-100 bg-red-50 px-3 py-1 text-sm text-red-700 hover:bg-red-100" %>
+            </div>
+
+            <time class="text-xs text-slate-400"><%= time_ago_in_words(article.created_at) %> ago</time>
+          </div>
+        </div>
+      </article>
+    <% end %>
+  </div>
+<% end %>
