@@ -23,7 +23,9 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <body>
+  <body class="container mx-auto p-4">
+    <%= render "layouts/nav" %>
+    <%= render "layouts/messages" %>
     <%= yield %>
   </body>
 </html>

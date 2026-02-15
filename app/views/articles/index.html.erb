@@ -1,20 +1,23 @@
-<h1>Article Listing Page</h1>
+<h1 class="text-center mt-4" >Listing All Articles</h1>
+  <% @articles.each do |article| %>
+<div class="card bg-base-100 w-96 shadow-sm">
+  <div class="card-body">
+    <h2 class="card-title"><%=article.title%></h2>
+    <p><%=article.description%></p>
+    <div class="card-actions justify-end">
+      <%= link_to "Show", article_path(article) %>
+      <%= link_to "Edit", edit_article_path(article)%>
+      <%= link_to "Delete", article_path(article), method: :delete, data: { confirm: "Are you sure?" }, class:"btn-sm btn-error" %>
+      </div>
+  </div>
+  <figure>
+    <img
+      src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp"
+      alt="Shoes" />
+  </figure>
+</div>
+ <%end%>
 
-<table>
-    <thead>
-        <tr>
-            <th>Title</th>
-            <th>Description</th>
-            <th>Actions</th>
-        </tr>
-    </thead>
-    <tbody>
-        <% @articles.each do |article| %>
-        <tr>
-            <td> <%=article.title%> </td>
-            <td> <%=article.description%> </td>
-            <td> Placeholder </td>
-        </tr>
-        <%end%>
-    </tbody>
-</table>
+
+
+<p><%= link_to "Create New Article", new_article_path %></p>

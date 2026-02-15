@@ -71,3 +71,5 @@ end
 group :production do
   gem "pg"
 end
+
+gem "tailwindcss-rails", "~> 4.4"
