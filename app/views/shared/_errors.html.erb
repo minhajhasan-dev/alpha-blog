@@ -1,0 +1,10 @@
+ <% if obj.errors.any? %>
+      <div class="rounded-md border border-red-200 bg-red-50 p-4 text-sm text-red-700">
+        <p class="font-semibold"><%= pluralize(obj.errors.count, "error") %> prevented this article from saving:</p>
+        <ul class="mt-2 list-disc list-inside">
+          <% obj.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
